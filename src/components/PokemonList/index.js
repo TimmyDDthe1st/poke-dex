@@ -3,12 +3,13 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Card({ data }) {
   const { name, url } = data;
   const [pokemonData, setPokemonData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   const getAndSetPokemonData = async (link) => {
     setIsLoading(true);
@@ -25,12 +26,12 @@ export default function Card({ data }) {
   }, []);
 
   const handleClick = () => {
-    <Link to={`/?pokemonName=${name}`} state={{ pokemon: name }} />;
+    navigate(`/${name}`);
   };
 
   return (
     <Paper>
-      <Box display="flex" justifyContent="space-around">
+      <Box display="flex" justifyContent="space-around" alignItems="center">
         {isLoading
           ? <Skeleton variant="circular" width={64} height={64} />
           : (
@@ -41,8 +42,8 @@ export default function Card({ data }) {
             />
           )}
 
-        <Box display="flex" alignItems="center">
-          <Typography>{name}</Typography>
+        <Box display="flex" alignItems="center" py={3} px={3}>
+          <Typography align="left">{name}</Typography>
         </Box>
         <Button onClick={handleClick}>VIEW POKEMON</Button>
       </Box>

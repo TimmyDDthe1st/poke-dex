@@ -5,8 +5,8 @@ import PokemonInformation from './PokemonInformation';
 export default function Router() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/?pokemonName=" element={<PokemonInformation />} />
+      <Route path=":pokemonName" element={<PokemonInformation />} />
+      <Route exact path="/" element={<Home />} />
     </Routes>
   );
 }
