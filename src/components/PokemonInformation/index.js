@@ -1,8 +1,9 @@
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Button } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function PokemonInformation() {
+  const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
   const objToString = (obj) => Object.entries(obj).reduce((str, [p, val]) => `${val}\n`, '');
   const [pokemonData, setPokemonData] = useState({});
@@ -21,10 +22,15 @@ export default function PokemonInformation() {
     getAndSetPokemonData(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
   }, []);
 
+  const handleClick = () => {
+    navigate(-1);
+  };
+
   const { name } = pokemonData;
 
   return (
     <Box>
+      <Button onClick={handleClick}>BACK</Button>
       <Typography>POKEMON INFORMATION</Typography>
       <Typography>{name}</Typography>
     </Box>
