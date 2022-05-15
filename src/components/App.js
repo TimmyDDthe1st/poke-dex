@@ -3,7 +3,7 @@ import Router from './Router';
 
 function App() {
   return (
-    <Container>
+    <Container maxWidth="md">
       <Typography>App Container</Typography>
       <Router />
     </Container>

@@ -1,15 +1,16 @@
 import {
-  Typography, Paper, Avatar, Button, Skeleton,
+  Paper,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import InfoModal from '../PokemonInfoModal';
+import Card from './Card';
 
-export default function Card({ data }) {
+export default function PokemonInformation({ data }) {
+  const [openModal, setOpenModal] = useState(false);
   const { name, url } = data;
-  const [pokemonData, setPokemonData] = useState();
+  const [pokemonData, setPokemonData] = useState({ sprites: '' });
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
 
   const getAndSetPokemonData = async (link) => {
     setIsLoading(true);
@@ -26,26 +27,24 @@ export default function Card({ data }) {
   }, []);
 
   const handleClick = () => {
-    navigate(`/${name}`);
+    setOpenModal(true);
   };
 
   return (
     <Paper>
-      <Box display="flex" justifyContent="space-around" alignItems="center">
-        {isLoading
-          ? <Skeleton variant="circular" width={64} height={64} />
-          : (
-            <Avatar
-              alt={name}
-              src={pokemonData.sprites.front_default}
-              sx={{ width: 64 }}
-            />
-          )}
-
-        <Box display="flex" alignItems="center" py={3} px={3}>
-          <Typography align="left">{name}</Typography>
-        </Box>
-        <Button onClick={handleClick}>VIEW POKEMON</Button>
+      <Box display="flex" flexDirection="row" justifyContent="space-around" alignItems="center">
+        <Card
+          isLoading={isLoading}
+          sprite={pokemonData.sprites.front_default}
+          pokemonName={name}
+          handleClick={handleClick}
+        />
+        <InfoModal
+          setOpenModal={setOpenModal}
+          openModal={openModal}
+          pokemonName={name}
+          pokemonData={data}
+        />
       </Box>
     </Paper>
   );
