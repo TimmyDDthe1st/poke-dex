@@ -5,7 +5,7 @@ import {
 export default function InfoModal({
   setOpenModal, openModal, pokemonData,
 }) {
-  const { name } = pokemonData;
+  const { name, sprites } = pokemonData;
 
   const handleClick = () => {
     setOpenModal(false);
@@ -15,8 +15,19 @@ export default function InfoModal({
     <Modal open={openModal} onClose={handleClick}>
       <Container maxWidth="md">
         <Paper variant="elevation">
-          <Box>
+          <Box display="flex" flexDirection="column" justifyContent="center">
             <Typography>POKEMON INFORMATION</Typography>
+            <Box
+              component="img"
+              sx={{
+                height: 128,
+                width: 128,
+                maxHeight: { xs: 233, md: 167 },
+                maxWidth: { xs: 350, md: 250 },
+              }}
+              alt={name}
+              src={sprites.front_default}
+            />
             <Typography>{name}</Typography>
           </Box>
         </Paper>

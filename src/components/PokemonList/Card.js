@@ -8,7 +8,16 @@ export default function PokemonCard({
   return (
 
     <Card>
-      {
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
+        py={3}
+        px={3}
+      >
+        <Typography align="left">{pokemonName}</Typography>
+        {
         isLoading
           ? <Skeleton variant="circular" width={64} height={64} />
           : (
@@ -25,10 +34,8 @@ export default function PokemonCard({
             />
           )
       }
-      <Box display="flex" alignItems="center" py={3} px={3}>
-        <Typography align="left">{pokemonName}</Typography>
+        <Button onClick={handleClick}>VIEW POKEMON</Button>
       </Box>
-      <Button onClick={handleClick}>VIEW POKEMON</Button>
     </Card>
 
   );

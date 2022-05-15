@@ -8,9 +8,10 @@ import Card from './Card';
 
 export default function PokemonInformation({ data }) {
   const [openModal, setOpenModal] = useState(false);
-  const { name, url } = data;
   const [pokemonData, setPokemonData] = useState({ sprites: '' });
   const [isLoading, setIsLoading] = useState(true);
+  const { name, url } = data;
+  const { sprites } = pokemonData;
 
   const getAndSetPokemonData = async (link) => {
     setIsLoading(true);
@@ -35,7 +36,7 @@ export default function PokemonInformation({ data }) {
       <Box display="flex" flexDirection="row" justifyContent="space-around" alignItems="center">
         <Card
           isLoading={isLoading}
-          sprite={pokemonData.sprites.front_default}
+          sprite={sprites.front_default}
           pokemonName={name}
           handleClick={handleClick}
         />
@@ -43,7 +44,7 @@ export default function PokemonInformation({ data }) {
           setOpenModal={setOpenModal}
           openModal={openModal}
           pokemonName={name}
-          pokemonData={data}
+          pokemonData={pokemonData}
         />
       </Box>
     </Paper>
