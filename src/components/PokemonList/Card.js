@@ -7,7 +7,6 @@ export default function PokemonCard({
 }) {
   const SPRITE_SIZE = 128;
   return (
-
     <Card>
       <Box
         display="flex"
@@ -16,6 +15,7 @@ export default function PokemonCard({
         flexDirection="column"
         py={3}
         px={3}
+        onClick={handleClick}
       >
         {
         isLoading
@@ -38,6 +38,7 @@ export default function PokemonCard({
                 alt={pokemonName}
                 src={sprite}
               />
+
               <Button onClick={handleClick}>VIEW POKEMON</Button>
             </>
           )
