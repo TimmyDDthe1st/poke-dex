@@ -1,10 +1,11 @@
 import {
-  Skeleton, Box, Typography, Button, Card,
+  Skeleton, Stack, Box, Typography, Button, Card,
 } from '@mui/material';
 
 export default function PokemonCard({
   isLoading, sprite, pokemonName, handleClick,
 }) {
+  const SPRITE_SIZE = 128;
   return (
 
     <Card>
@@ -18,25 +19,27 @@ export default function PokemonCard({
       >
         {
         isLoading
-          ? <Skeleton variant="circular" width={64} height={64} />
+          ? (
+            <Stack>
+              <Skeleton variant="text" />
+              <Skeleton variant="circular" width={SPRITE_SIZE} height={SPRITE_SIZE} />
+              <Skeleton variant="text" />
+            </Stack>
+          )
           : (
             <>
               <Typography align="left">{pokemonName}</Typography>
-
               <Box
                 component="img"
                 sx={{
-                  height: 128,
-                  width: 128,
-                  maxHeight: { xs: 233, md: 167 },
-                  maxWidth: { xs: 350, md: 250 },
+                  height: SPRITE_SIZE,
+                  width: SPRITE_SIZE,
                 }}
                 alt={pokemonName}
                 src={sprite}
               />
               <Button onClick={handleClick}>VIEW POKEMON</Button>
             </>
-
           )
       }
       </Box>
