@@ -1,11 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './Home';
-import PokemonInformation from './PokemonInformation';
+// import PokemonInfoModal from './PokemonInfoModal';
 
 export default function Router() {
   return (
     <Routes>
-      <Route path=":pokemonName" element={<PokemonInformation />} />
+      {/*
+      <Route path=":pokemonName" element={<PokemonInfoModal />} />
+      */}
       <Route exact path="/" element={<Home />} />
     </Routes>
   );

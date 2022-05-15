@@ -27,15 +27,17 @@ function Home() {
   };
 
   return (
-    <Box display="flex" flexDirection="column">
-      {pokemonData.results
-        ? pokemonData.results.map((result) => <Card data={result} key={result.name} />)
-        : <Typography>Error</Typography>}
+    <>
+      <Box display="flex" flexDirection="row" flexWrap="wrap">
+        {pokemonData.results
+          ? pokemonData.results.map((result) => <Card data={result} key={result.name} />)
+          : <Typography>Error</Typography>}
+      </Box>
       <Box display="flex" flexDirection="row" justifyContent="space-between">
         <Button onClick={() => handleClick(false)}>PREVIOUS</Button>
         <Button onClick={() => handleClick(true)}>NEXT</Button>
       </Box>
-    </Box>
+    </>
 
   );
 }

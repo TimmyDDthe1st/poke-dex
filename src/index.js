@@ -7,11 +7,12 @@ import theme from './theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
+  <ThemeProvider theme={theme}>
+    <React.StrictMode>
+      <BrowserRouter>
         <App />
-      </ThemeProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
+      </BrowserRouter>
+    </React.StrictMode>
+  </ThemeProvider>,
+
 );
