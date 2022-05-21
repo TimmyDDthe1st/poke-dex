@@ -3,7 +3,7 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
-import InfoModal from '../PokemonInfoModal';
+import InfoModal from '../InfoModal';
 import Card from './Card';
 
 export default function PokemonInformation({ data }) {

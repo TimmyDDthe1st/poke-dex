@@ -2,7 +2,8 @@ import { Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 
-import Card from '../PokemonList/index';
+import Card from '../List/index';
+import baseUrl from '../../helpers/baseUrl';
 
 function Home() {
   const [pokemonData, setPokemonData] = useState({});
@@ -14,7 +15,7 @@ function Home() {
   };
 
   useEffect(() => {
-    getAndSetPokemonData('https://pokeapi.co/api/v2/pokemon/');
+    getAndSetPokemonData(`${baseUrl()}pokemon/`);
   }, []);
 
   const handleClick = async (forward) => {

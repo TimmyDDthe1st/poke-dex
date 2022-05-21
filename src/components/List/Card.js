@@ -28,7 +28,15 @@ export default function PokemonCard({
           )
           : (
             <>
-              <Typography align="left">{pokemonName}</Typography>
+              <Typography
+                align="left"
+                sx={{
+                  textTransform: 'capitalize',
+                }}
+              >
+                {pokemonName}
+
+              </Typography>
               <Box
                 component="img"
                 sx={{
