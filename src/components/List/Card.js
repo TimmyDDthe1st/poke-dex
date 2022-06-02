@@ -1,7 +1,8 @@
 import {
-  Skeleton, Stack, Box, Typography, Button, Card,
+  Box, Typography, Button, Card,
 } from '@mui/material';
 
+import PokemonCardLoading from './PokemonCardLoading';
 import { SPRITE_SIZE } from '../../helpers/spriteSize';
 
 export default function PokemonCard({
@@ -21,11 +22,7 @@ export default function PokemonCard({
         {
         isLoading
           ? (
-            <Stack>
-              <Skeleton variant="text" />
-              <Skeleton variant="circular" width={SPRITE_SIZE} height={SPRITE_SIZE} />
-              <Skeleton variant="text" />
-            </Stack>
+            <PokemonCardLoading />
           )
           : (
             <>
