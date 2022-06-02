@@ -4,7 +4,7 @@ import {
   Box, Typography, Chip, Stack, Avatar, Skeleton,
 } from '@mui/material';
 
-import { SPRITE_SIZE } from '../../List/Card';
+import { SPRITE_SIZE } from '../../../helpers/spriteSize';
 
 export default function GeneralTab({ pokemonData, pokemonSpeciesData, isLoading }) {
   const {
@@ -33,21 +33,17 @@ export default function GeneralTab({ pokemonData, pokemonSpeciesData, isLoading 
         >
           {name}
         </StyledTypography>
-        {isLoading
-          ? <Skeleton variant="circular" width={SPRITE_SIZE} height={SPRITE_SIZE} />
-          : (
-            <Box
-              component="img"
-              sx={{
-                height: 128,
-                width: 128,
-                maxHeight: { xs: 233, md: 167 },
-                maxWidth: { xs: 350, md: 250 },
-              }}
-              alt={name}
-              src={sprites.front_default}
-            />
-          )}
+        <Box
+          component="img"
+          sx={{
+            height: SPRITE_SIZE,
+            width: SPRITE_SIZE,
+            maxHeight: { xs: 233, md: 167 },
+            maxWidth: { xs: 350, md: 250 },
+          }}
+          alt={name}
+          src={sprites.front_default}
+        />
 
       </Box>
       <Box flexDirection="column" px={3} py={3}>

@@ -2,7 +2,7 @@ import {
   Skeleton, Stack, Box, Typography, Button, Card,
 } from '@mui/material';
 
-export const SPRITE_SIZE = 128;
+import { SPRITE_SIZE } from '../../helpers/spriteSize';
 
 export default function PokemonCard({
   isLoading, sprite, pokemonName, handleClick,

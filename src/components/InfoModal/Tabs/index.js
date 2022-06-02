@@ -1,9 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { Box, Tabs, Tab } from '@mui/material';
+import {
+  Box, Tabs, Tab, Skeleton,
+} from '@mui/material';
 import { useState, useMemo } from 'react';
 
 import GeneralTab from './GeneralTab';
 import TabPanel from './TabPanel';
+import { SPRITE_SIZE } from '../../../helpers/spriteSize';
 
 function a11yProps(index) {
   return {
@@ -42,14 +45,15 @@ export default function InfoModalTabs({ pokemonData }) {
         </Tabs>
       </Box>
       <TabPanel value={tabValue} index={0}>
-        {!isLoading
-                  && (
-                  <GeneralTab
-                    pokemonData={pokemonData}
-                    pokemonSpeciesData={pokemonSpeciesData}
-                    isLoading={isLoading}
-                  />
-                  )}
+        {isLoading
+          ? <Skeleton variant="circular" width={SPRITE_SIZE} height={SPRITE_SIZE} />
+          : (
+            <GeneralTab
+              pokemonData={pokemonData}
+              pokemonSpeciesData={pokemonSpeciesData}
+              isLoading={isLoading}
+            />
+          )}
       </TabPanel>
       <TabPanel value={tabValue} index={1}>
         Item Two
