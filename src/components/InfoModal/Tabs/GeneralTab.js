@@ -3,29 +3,15 @@ import { styled } from '@mui/system';
 import {
   Box, Typography, Chip, Stack, Avatar, Skeleton,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
 
 import { SPRITE_SIZE } from '../../List/Card';
 
-export default function GeneralTab({ pokemonData }) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [pokemonSpeciesData, setPokemonSpeciesData] = useState([]);
+export default function GeneralTab({ pokemonData, pokemonSpeciesData, isLoading }) {
   const {
-    name, sprites, species, types,
+    name, sprites, types,
   } = pokemonData;
+
   const { shape, habitat, capture_rate } = pokemonSpeciesData;
-
-  const getAndSetPokemonSpeciesData = async (url) => {
-    setIsLoading(true);
-    await fetch(url)
-      .then((res) => res.json())
-      .then((data) => setPokemonSpeciesData(data));
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    getAndSetPokemonSpeciesData(species.url);
-  }, []);
 
   const StyledChip = styled(Chip, {
     shouldForwardProp: (prop) => prop !== 'backgroundColorType',
@@ -72,9 +58,6 @@ export default function GeneralTab({ pokemonData }) {
                 key={type.type.name}
                 backgroundColorType={type.type.name}
                 label={type.type.name}
-                sx={{
-                  textTransform: 'capitalize',
-                }}
               />
             ))}
           </Stack>
@@ -88,7 +71,7 @@ export default function GeneralTab({ pokemonData }) {
         <Box mt={3}>
           <StyledTypography>
             Habitat:&nbsp;
-            {habitat && habitat.name !== ''
+            {habitat.name !== ''
               ? habitat.name
               : 'No habitat found'}
           </StyledTypography>
