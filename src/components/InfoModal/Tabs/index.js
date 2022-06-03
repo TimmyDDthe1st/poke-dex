@@ -4,7 +4,8 @@ import {
 } from '@mui/material';
 import { useState, useMemo } from 'react';
 
-import GeneralTab from './GeneralTab/GeneralTab';
+import GeneralTab from './GeneralTab/index';
+import StatsTab from './StatsTab';
 import TabPanel from './TabPanel';
 
 function a11yProps(index) {
@@ -51,7 +52,9 @@ export default function InfoModalTabs({ pokemonData }) {
         />
       </TabPanel>
       <TabPanel value={tabValue} index={1}>
-        Item Two
+        <StatsTab
+          stats={pokemonData.stats}
+        />
       </TabPanel>
       <TabPanel value={tabValue} index={2}>
         Item Three

@@ -44,7 +44,6 @@ export default function PokemonCard({
                 alt={pokemonName}
                 src={sprite}
               />
-
               <Button onClick={handleClick}>VIEW POKEMON</Button>
             </>
           )
