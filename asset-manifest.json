@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/poke-dex/static/js/main.b333eca3.js",
+    "index.html": "/poke-dex/index.html",
+    "main.b333eca3.js.map": "/poke-dex/static/js/main.b333eca3.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.b333eca3.js"
+  ]
+}
