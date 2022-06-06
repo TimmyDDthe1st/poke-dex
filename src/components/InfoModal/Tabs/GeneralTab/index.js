@@ -53,7 +53,7 @@ export default function GeneralTab({ pokemonData, pokemonSpeciesData, isLoading 
       {isLoading
         ? <TextTextTextLoading />
         : (
-          <Box flexDirection="column" px={3} py={3}>
+          <Box flexDirection="column">
             <Box flexDirection="row">
               <Stack direction="row" spacing={1}>
                 {types.map((type) => (
