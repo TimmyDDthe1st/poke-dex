@@ -1,8 +1,7 @@
-import { Button } from '@mui/material';
-import { Box } from '@mui/system';
+import { Button, Grid, Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-import Card from '../List/index';
+import List from '../List/index';
 import baseUrl from '../../helpers/baseUrl';
 
 function Home() {
@@ -28,15 +27,20 @@ function Home() {
   };
 
   return (
-    <Box display="flex" flexDirection="row" flexWrap="wrap">
-      {pokemonData.results
-                  && pokemonData.results.map((result) => <Card data={result} key={result.name} />)}
+    <>
+      <Grid container direction="row">
+        {pokemonData.results
+                  && pokemonData.results.map((result) => (
+                    <Grid item xs={6} md={3}>
+                      <List data={result} key={result.name} />
+                    </Grid>
+                  ))}
+      </Grid>
       <Box display="flex" flexDirection="row" justifyContent="space-between">
         <Button onClick={() => handleClick(false)}>PREVIOUS</Button>
         <Button onClick={() => handleClick(true)}>NEXT</Button>
       </Box>
-    </Box>
-
+    </>
   );
 }
 

@@ -1,12 +1,11 @@
 import {
   Paper,
 } from '@mui/material';
-import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import InfoModal from '../InfoModal';
-import Card from './Card';
+import PokeCard from './PokeCard';
 
-export default function PokemonInformation({ data }) {
+export default function List({ data }) {
   const [openModal, setOpenModal] = useState(false);
   const [pokemonData, setPokemonData] = useState({ sprites: '' });
   const [isLoading, setIsLoading] = useState(true);
@@ -33,20 +32,18 @@ export default function PokemonInformation({ data }) {
 
   return (
     <Paper>
-      <Box display="flex" flexDirection="row" justifyContent="space-around" alignItems="center">
-        <Card
-          isLoading={isLoading}
-          sprite={sprites.front_default}
-          pokemonName={name}
-          handleClick={handleClick}
-        />
-        <InfoModal
-          setOpenModal={setOpenModal}
-          openModal={openModal}
-          pokemonName={name}
-          pokemonData={pokemonData}
-        />
-      </Box>
+      <PokeCard
+        isLoading={isLoading}
+        sprite={sprites.front_default}
+        pokemonName={name}
+        handleClick={handleClick}
+      />
+      <InfoModal
+        setOpenModal={setOpenModal}
+        openModal={openModal}
+        pokemonName={name}
+        pokemonData={pokemonData}
+      />
     </Paper>
   );
 }

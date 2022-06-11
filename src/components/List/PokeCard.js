@@ -5,7 +5,7 @@ import {
 import PokemonCardLoading from './PokemonCardLoading';
 import { SPRITE_SIZE } from '../../helpers/spriteSize';
 
-export default function PokemonCard({
+export default function PokeCard({
   isLoading, sprite, pokemonName, handleClick,
 }) {
   return (
@@ -50,6 +50,5 @@ export default function PokemonCard({
       }
       </Box>
     </Card>
-
   );
 }
