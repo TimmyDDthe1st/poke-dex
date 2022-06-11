@@ -2,6 +2,8 @@
 
 A React front end taking advantage of the beautiful https://pokeapi.co.
 
+[Take a look](https://timmyddthe1st.github.io/poke-dex/)
+
 ## Available Scripts
 
 In the project directory, run:
