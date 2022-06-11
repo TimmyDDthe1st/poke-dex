@@ -31,8 +31,8 @@ function Home() {
       <Grid container direction="row">
         {pokemonData.results
                   && pokemonData.results.map((result) => (
-                    <Grid item xs={6} md={3}>
-                      <List data={result} key={result.name} />
+                    <Grid item xs={6} md={3} key={result.name}>
+                      <List data={result} />
                     </Grid>
                   ))}
       </Grid>
