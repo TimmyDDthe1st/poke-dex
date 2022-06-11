@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.js": "/poke-dex/static/js/main.018cef0f.js",
+    "main.js": "/poke-dex/static/js/main.9682bc88.js",
+    "static/media/header-image.png": "/poke-dex/static/media/header-image.938e0a35d8e49d7d577d.png",
     "index.html": "/poke-dex/index.html",
-    "main.018cef0f.js.map": "/poke-dex/static/js/main.018cef0f.js.map"
+    "main.9682bc88.js.map": "/poke-dex/static/js/main.9682bc88.js.map"
   },
   "entrypoints": [
-    "static/js/main.018cef0f.js"
+    "static/js/main.9682bc88.js"
   ]
 }
