@@ -17,7 +17,7 @@ export default function InfoModal({
         <Box marginTop={5}>
           <Paper variant="elevation">
             <Box display="flex" flexDirection="column" justifyContent="center" py={3} px={3}>
-              <InfoModalTabs pokemonData={pokemonData} />
+              <InfoModalTabs pokemonData={pokemonData} handleClick={handleClick} />
             </Box>
           </Paper>
         </Box>

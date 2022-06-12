@@ -1,6 +1,7 @@
 import {
-  Box, Tabs, Tab,
+  Box, Tabs, Tab, Grid, IconButton,
 } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { useState, useMemo, useEffect } from 'react';
 import {
   Chart as ChartJS, ArcElement, Tooltip, Legend,
@@ -9,6 +10,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 import GeneralTab from './GeneralTab/index';
 import StatsTab from './StatsTab';
+import AbilitiesTab from './AbilitiesTab';
 import TabPanel from './TabPanel';
 
 function a11yProps(index) {
@@ -20,12 +22,51 @@ function a11yProps(index) {
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
-export default function InfoModalTabs({ pokemonData }) {
+export default function InfoModalTabs({ pokemonData, handleClick }) {
   const [chartData, setChartData] = useState();
   const [tabValue, setTabValue] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [pokemonSpeciesData, setPokemonSpeciesData] = useState([]);
-  const { species, name, stats } = pokemonData;
+  const {
+    species, name, stats, abilities,
+  } = pokemonData;
+
+  const chartConfig = {
+    labels: stats.map((stat) => stat.stat.name),
+    datasets: [
+      {
+        label: 'Stat',
+        data: stats.map((stat) => stat.base_stat),
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+    options: {
+      responsive: true,
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Stats',
+      },
+    },
+  };
 
   const handleChange = (_, newValue) => {
     setTabValue(newValue);
@@ -40,72 +81,73 @@ export default function InfoModalTabs({ pokemonData }) {
   };
 
   useEffect(() => {
-    setChartData({
-      labels: stats.map((stat) => stat.stat.name),
-      datasets: [
-        {
-          label: 'Stat',
-          data: stats.map((stat) => stat.base_stat),
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-          ],
-          borderWidth: 1,
-        },
-      ],
-      options: {
-        responsive: true,
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: true,
-          text: 'Stats',
-        },
-      },
-    });
+    setChartData(chartConfig);
   }, []);
 
-  useMemo(() => getAndSetPokemonSpeciesData(species.url), [name]);
+  useMemo(() => {
+    getAndSetPokemonSpeciesData(species.url);
+  }, [name]);
+
+  const tabs = [
+    {
+      label: 'General',
+    },
+    {
+      label: 'Stats',
+    },
+    {
+      label: 'Abilities',
+    },
+  ];
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <>
+      <Box display="flex" justifyContent="flex-end">
+        <IconButton color="primary" aria-label="close modal" component="div" onClick={handleClick}>
+          <CloseIcon />
+        </IconButton>
+      </Box>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={tabValue} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="General" {...a11yProps(0)} />
-          <Tab label="Stats" {...a11yProps(1)} />
-          <Tab label="Moves" {...a11yProps(2)} />
+          {tabs.map((tab, index) => (
+            <Tab
+              key={tab.label}
+              label={tab.label}
+              {...a11yProps(index)}
+            />
+          ))}
         </Tabs>
       </Box>
-      <TabPanel value={tabValue} index={0}>
-        <GeneralTab
-          pokemonData={pokemonData}
-          pokemonSpeciesData={pokemonSpeciesData}
-          isLoading={isLoading}
-        />
-      </TabPanel>
-      <TabPanel value={tabValue} index={1}>
-        {!isLoading && (
-        <StatsTab
-          chartData={chartData}
-        />
-        )}
-      </TabPanel>
-      <TabPanel value={tabValue} index={2}>
-        Item Three
-      </TabPanel>
-    </Box>
+      <Grid container justifyContent="center">
+        <Grid item>
+          <TabPanel value={tabValue} index={0}>
+            <GeneralTab
+              pokemonData={pokemonData}
+              pokemonSpeciesData={pokemonSpeciesData}
+              isLoading={isLoading}
+            />
+          </TabPanel>
+        </Grid>
+        <Grid item>
+          <TabPanel value={tabValue} index={1}>
+            {!isLoading && (
+              <StatsTab
+                chartData={chartData}
+              />
+            )}
+          </TabPanel>
+        </Grid>
+        <Grid item>
+          <TabPanel value={tabValue} index={2}>
+            {!isLoading && (
+            <AbilitiesTab
+              abilities={abilities}
+              abilityUrls={abilities.map((ability) => ability.ability.url)}
+            />
+            )}
+          </TabPanel>
+        </Grid>
+      </Grid>
+    </>
   );
 }

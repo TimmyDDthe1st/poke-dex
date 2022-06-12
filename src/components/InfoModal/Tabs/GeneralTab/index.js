@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { styled } from '@mui/system';
 import {
-  Box, Typography, Chip, Stack, Avatar,
+  Box, Typography, Chip, Stack, Avatar, Grid,
 } from '@mui/material';
 
 import { SPRITE_SIZE } from '../../../../helpers/spriteSize';
@@ -26,12 +26,14 @@ export default function GeneralTab({ pokemonData, pokemonSpeciesData, isLoading 
     textTransform: 'capitalize',
   });
 
+  const marginX = 3;
+
   return (
-    <Box display="flex" flexDirection="row" justifyContent="space-around" px={3}>
+    <Grid container justifyContent="space-around">
       {isLoading
         ? <TextImageLoading />
         : (
-          <Box flexDirection="column">
+          <Box flexDirection="column" mx={marginX}>
             <StyledTypography
               variant="h4"
             >
@@ -53,7 +55,7 @@ export default function GeneralTab({ pokemonData, pokemonSpeciesData, isLoading 
       {isLoading
         ? <TextTextTextLoading />
         : (
-          <Box flexDirection="column">
+          <Box flexDirection="column" mx={marginX}>
             <Box flexDirection="row">
               <Stack direction="row" spacing={1}>
                 {types.map((type) => (
@@ -81,8 +83,7 @@ export default function GeneralTab({ pokemonData, pokemonSpeciesData, isLoading 
             </Box>
           </Box>
         )}
-
-      <Box display="flex" flexDirection="column" alignItems="center">
+      <Box display="flex" flexDirection="column" alignItems="center" mx={marginX}>
         {isLoading
           ? <TextImageLoading />
           : (
@@ -100,7 +101,7 @@ export default function GeneralTab({ pokemonData, pokemonSpeciesData, isLoading 
             </>
           )}
       </Box>
-    </Box>
+    </Grid>
 
   );
 }

@@ -8,11 +8,9 @@ import theme from './theme';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ThemeProvider theme={theme}>
-    <React.StrictMode>
-      <HashRouter>
-        <App />
-      </HashRouter>
-    </React.StrictMode>
+    <HashRouter>
+      <App />
+    </HashRouter>
   </ThemeProvider>,
 
 );

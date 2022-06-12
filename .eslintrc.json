@@ -18,6 +18,8 @@
         "react"
     ],
     "rules": {
+        "no-await-in-loop": 0,
+        "no-plusplus": 0,
         "react/jsx-props-no-spreading": 0,
         "max-len": 1,
         "react/jsx-first-prop-new-line": 2,
