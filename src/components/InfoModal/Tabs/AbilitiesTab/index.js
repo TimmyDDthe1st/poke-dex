@@ -29,8 +29,7 @@ export default function AbilitiesTab({ abilities, abilityUrls }) {
           />
           {isLoading
             ? <Typography>LOADING...</Typography>
-            : <Typography>{abilityData[index].effect_entries[index].effect}</Typography>}
-          (//TODO: need to get the sub object language value to decide which explanation to display)
+            : <Typography>{abilityData[index].effect_entries[0].effect}</Typography>}
         </Box>
       ))}
     </Box>
