@@ -28,7 +28,7 @@ function Home() {
   };
 
   return (
-    <Box display="flex" flexDirection="row" flexWrap="wrap">
+    <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center">
       {pokemonData.results
                   && pokemonData.results.map((result) => <Card data={result} key={result.name} />)}
       <Box display="flex" flexDirection="row" justifyContent="space-between">
